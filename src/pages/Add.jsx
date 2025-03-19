@@ -49,10 +49,12 @@ const Add = ({ token }) => {
         }
       );
 
-      if (response.data.success) {
+      if (response.data && response.data.success) {
         toast.success(response.data.message);
         setName("");
         setDescription("");
+        setCategory("Men");
+        setSubCategory("Topwear");
         setPrice("");
         setSizes([]);
         setBestseller(false);
@@ -61,10 +63,8 @@ const Add = ({ token }) => {
         setImage3(null);
         setImage4(null);
       } else {
-        toast.error("Failed to add product: " + response.data.message);
+        toast.error("Failed to add product: " + (response.data ? response.data.message : "Unknown error"));
       }
-
-      console.log(response.data);
     } catch (error) {
       console.error(error);
       toast.error("Failed to add product: " + error.message);
