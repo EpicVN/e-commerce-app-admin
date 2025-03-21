@@ -11,7 +11,6 @@ const List = ({ token }) => {
       const response = await axios.get(config.backendUrl + "/api/product/list");
 
       if (response.data.success) {
-        console.log(response.data);
         setList(response.data.products);
       } else {
         toast.error(response.data.message);
